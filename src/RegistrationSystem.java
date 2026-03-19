@@ -19,6 +19,34 @@ class Login {
                 password.matches(".*[^a-zA-Z0-9].*"); // special character
     }
 
+    // is phone number valid
+    public boolean checkCellPhoneNumber(String phone) {
+        return phone.matches("^\\+27\\d{9}$");
+    }
+
+    //  Register user
+    public String registerUser(String username, String password, String phone) {
+
+        if (!checkUserName(username)) {
+            return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
+        }
+
+        if (!checkPasswordComplexity(password)) {
+            return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
+        }
+
+        if (!checkCellPhoneNumber(phone)) {
+            return "Cell phone number incorrectly formatted or does not contain international code.";
+        }
+
+        // Storing all details if they are correct
+        storedUsername = username;
+        storedPassword = password;
+        storedCellPhone = phone;
+
+        return "Registration successful!";
+    }
+
 
 
 public class RegistrationSystem {
@@ -49,6 +77,22 @@ public class RegistrationSystem {
         String result = login.registerUser(username, password, phone);
         System.out.println(result);
 
+        //  allows login if registration was successful
+        if (result.equals("Registration successful!")) {
+
+            System.out.println("\n----- Login -----");
+
+            System.out.print("Enter Username: ");
+            String loginUser = scanner.nextLine();
+
+            System.out.print("Enter Password: ");
+            String loginPass = scanner.nextLine();
+
+            boolean success = login.loginUser(loginUser, loginPass);
+
+            String message = login.returnLoginStatus(success, firstName, lastName);
+            System.out.println(message);
+        }
 
         scanner.close();
     }
