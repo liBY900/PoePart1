@@ -8,7 +8,7 @@ class Login {
 
     //  Username check
     public boolean checkUserName(String username) {
-        return username.contains("_") && username.length() <= 5;
+        return username.contains("@") && username.length() >= 6;
     }
 
     //  Password complete check
@@ -28,11 +28,11 @@ class Login {
     public String registerUser(String username, String password, String phone) {
 
         if (!checkUserName(username)) {
-            return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
+            return "Username is not correctly formatted; please ensure that your username contains this character(@) and contains at least 6 characters ";
         }
 
         if (!checkPasswordComplexity(password)) {
-            return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
+            return "Password is not correctly formatted, please ensure that the password contains at least 8 characters, capital letter, number and a special character.";
         }
 
         if (!checkCellPhoneNumber(phone)) {
@@ -44,7 +44,7 @@ class Login {
         storedPassword = password;
         storedCellPhone = phone;
 
-        return "Registration successful!";
+        return "Registration successful!!";
     }
 
     //  Login check
@@ -55,7 +55,7 @@ class Login {
     //  Login message
     public String returnLoginStatus(boolean success, String firstName, String lastName) {
         if (success) {
-            return "Welcome " + firstName + ", " + lastName + " it is great to see you again.";
+            return "Welcome!! " + firstName + " " + lastName + " great to see you again.";
         } else {
             return "Username or password incorrect, please try again.";
         }
