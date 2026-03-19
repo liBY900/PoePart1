@@ -4,58 +4,59 @@ class Login {
 
     private String storedUsername;
     private String storedPassword;
-    private String storedCellPhone;
+    private String storedFirstName;
+    private String storedLastName;
 
-    //  Username check
+    // 1. Username check: must contain underscore (_) and be <= 5 characters
     public boolean checkUserName(String username) {
-        return username.contains("@") && username.length() >= 6;
+        return username.contains("_") && username.length() <= 5;
     }
 
-    //  Password complete check
+    // 2. Password complexity check
     public boolean checkPasswordComplexity(String password) {
         return password.length() >= 8 &&
-                password.matches(".*[A-Z].*") &&      // capital letter
-                password.matches(".*[0-9].*") &&      // number
-                password.matches(".*[^a-zA-Z0-9].*"); // special character
+                password.matches(".*[A-Z].*") &&
+                password.matches(".*[0-9].*") &&
+                password.matches(".*[^a-zA-Z0-9].*");
     }
 
-    // is phone number valid
+    // 3. Cell phone check: International code (+27) and no more than 10 digits after it
     public boolean checkCellPhoneNumber(String phone) {
-        return phone.matches("^\\+27\\d{9}$");
+        // Regex: starts with +27, followed by up to 10 digits
+        return phone.matches("^\\+27\\d{1,10}$");
     }
 
-    //  Register user
+    // 4. Register user with specific task messages
     public String registerUser(String username, String password, String phone) {
 
         if (!checkUserName(username)) {
-            return "Username is not correctly formatted; please ensure that your username contains this character(@) and contains at least 6 characters ";
+            return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
         }
 
         if (!checkPasswordComplexity(password)) {
-            return "Password is not correctly formatted, please ensure that the password contains at least 8 characters, capital letter, number and a special character.";
+            return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
         }
 
         if (!checkCellPhoneNumber(phone)) {
             return "Cell phone number incorrectly formatted or does not contain international code.";
         }
 
-        // Storing all details if they are correct
-        storedUsername = username;
-        storedPassword = password;
-        storedCellPhone = phone;
+        // Store details
+        this.storedUsername = username;
+        this.storedPassword = password;
 
-        return "Registration successful!!";
+        return "Username successfully captured.\nPassword successfully captured.\nCell phone number successfully added.";
     }
 
-    //  Login check
+    // 5. Login check
     public boolean loginUser(String username, String password) {
         return username.equals(storedUsername) && password.equals(storedPassword);
     }
 
-    //  Login message
+    // 6. Return login status message
     public String returnLoginStatus(boolean success, String firstName, String lastName) {
         if (success) {
-            return "Welcome!! " + firstName + " " + lastName + " great to see you again.";
+            return "Welcome " + firstName + ", " + lastName + " it is great to see you again.";
         } else {
             return "Username or password incorrect, please try again.";
         }
@@ -64,49 +65,35 @@ class Login {
 
 public class RegistrationSystem {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
         Login login = new Login();
 
-        System.out.println("*** Registration ***");
-
-        // User input
+        System.out.println("--- Registration ---");
         System.out.print("Enter First Name: ");
-        String firstName = scanner.nextLine();
-
+        String fName = scanner.nextLine();
         System.out.print("Enter Last Name: ");
-        String lastName = scanner.nextLine();
-
+        String lName = scanner.nextLine();
         System.out.print("Enter Username: ");
-        String username = scanner.nextLine();
-
+        String user = scanner.nextLine();
         System.out.print("Enter Password: ");
-        String password = scanner.nextLine();
+        String pass = scanner.nextLine();
+        System.out.print("Enter Cell Phone: ");
+        String cell = scanner.nextLine();
 
-        System.out.print("Enter Cell Phone (+27...): ");
-        String phone = scanner.nextLine();
+        String regStatus = login.registerUser(user, pass, cell);
+        System.out.println(regStatus);
 
-        // Register
-        String result = login.registerUser(username, password, phone);
-        System.out.println(result);
-
-        //  allows login if registration was successful
-        if (result.equals("Registration successful!")) {
-
-            System.out.println("\n----- Login -----");
-
+        // Only proceed if registration was successful
+        if (regStatus.contains("successfully added")) {
+            System.out.println("\n--- Login ---");
             System.out.print("Enter Username: ");
             String loginUser = scanner.nextLine();
-
             System.out.print("Enter Password: ");
             String loginPass = scanner.nextLine();
 
-            boolean success = login.loginUser(loginUser, loginPass);
-
-            String message = login.returnLoginStatus(success, firstName, lastName);
-            System.out.println(message);
+            boolean isSuccess = login.loginUser(loginUser, loginPass);
+            System.out.println(login.returnLoginStatus(isSuccess, fName, lName));
         }
-
         scanner.close();
     }
 }
