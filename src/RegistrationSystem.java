@@ -47,7 +47,20 @@ class Login {
         return "Registration successful!";
     }
 
+    //  Login check
+    public boolean loginUser(String username, String password) {
+        return username.equals(storedUsername) && password.equals(storedPassword);
+    }
 
+    //  Login message
+    public String returnLoginStatus(boolean success, String firstName, String lastName) {
+        if (success) {
+            return "Welcome " + firstName + ", " + lastName + " it is great to see you again.";
+        } else {
+            return "Username or password incorrect, please try again.";
+        }
+    }
+}
 
 public class RegistrationSystem {
     public static void main(String[] args) {
