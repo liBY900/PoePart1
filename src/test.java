@@ -34,7 +34,7 @@ public class test {
     public void testPasswordComplexityFailure() {
         // Test Data: "password"
         String expected = "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
-        String actual = login.registerUser("kyl_1", "password", "+27838968976");
+        String actual = login.registerUser("kyl_21", "password", "+27838968976");
         assertEquals(expected, actual);
     }
 

@@ -73,11 +73,11 @@ public class RegistrationSystem {
         String fName = scanner.nextLine();
         System.out.print("Enter Last Name: ");
         String lName = scanner.nextLine();
-        System.out.print("Enter Username: ");
+        System.out.print("Enter Username (must have underscore _ and is no more than five characters in length): ");
         String user = scanner.nextLine();
-        System.out.print("Enter Password: ");
+        System.out.print("Enter Password : (8+ characters, a capital letter, a number, and a special character)");
         String pass = scanner.nextLine();
-        System.out.print("Enter Cell Phone: ");
+        System.out.print("Enter Cell Phone(+27.......): ");
         String cell = scanner.nextLine();
 
         String regStatus = login.registerUser(user, pass, cell);
