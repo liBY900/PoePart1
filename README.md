@@ -92,8 +92,8 @@ Handles all core logic:
 * Handles user input via `Scanner`
 * Controls the flow:
 
-    1. Registration
-    2. Validation
+  1. Registration
+   2. Validation
     3. Login
 
 ---
