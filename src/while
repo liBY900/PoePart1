@@ -22,11 +22,10 @@ class Login {
 
     // 3. Cell phone check: International code (+27) and no more than 10 digits after it
     public boolean checkCellPhoneNumber(String phone) {
-        // Regex: starts with +27, followed by up to 10 digits
         return phone.matches("^\\+27\\d{1,10}$");
     }
 
-    // 4. Register user with specific task messages
+    // 4. Register user
     public String registerUser(String username, String password, String phone) {
 
         if (!checkUserName(username)) {
@@ -63,7 +62,7 @@ class Login {
     }
 }
 
-public class RegistrationSystem {
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Login login = new Login();
@@ -71,13 +70,17 @@ public class RegistrationSystem {
         System.out.println("--- Registration ---");
         System.out.print("Enter First Name: ");
         String fName = scanner.nextLine();
+
         System.out.print("Enter Last Name: ");
         String lName = scanner.nextLine();
-        System.out.print("Enter Username (must have underscore _ and is no more than five characters in length): ");
+
+        System.out.print("Enter Username (must have underscore _ and be no more than five characters): ");
         String user = scanner.nextLine();
-        System.out.print("Enter Password (8+ characters, a capital letter, a number, and a special character): ");
+
+        System.out.print("Enter Password (8+ characters, capital letter, number, special character): ");
         String pass = scanner.nextLine();
-        System.out.print("Enter Cell Phone(+27.......): ");
+
+        System.out.print("Enter Cell Phone (+27...): ");
         String cell = scanner.nextLine();
 
         String regStatus = login.registerUser(user, pass, cell);
@@ -85,15 +88,25 @@ public class RegistrationSystem {
 
         // Only proceed if registration was successful
         if (regStatus.contains("successfully added")) {
-            System.out.println("\n--- Login ---");
-            System.out.print("Enter Username: ");
-            String loginUser = scanner.nextLine();
-            System.out.print("Enter Password: ");
-            String loginPass = scanner.nextLine();
 
-            boolean isSuccess = login.loginUser(loginUser, loginPass);
-            System.out.println(login.returnLoginStatus(isSuccess, fName, lName));
+            System.out.println("\n--- Login ---");
+
+            boolean isSuccess = false;
+
+            // 🔁 WHILE LOOP FOR LOGIN
+            while (!isSuccess) {
+                System.out.print("Enter Username: ");
+                String loginUser = scanner.nextLine();
+
+                System.out.print("Enter Password: ");
+                String loginPass = scanner.nextLine();
+
+                isSuccess = login.loginUser(loginUser, loginPass);
+
+                System.out.println(login.returnLoginStatus(isSuccess, fName, lName));
+            }
         }
+
         scanner.close();
     }
 }
