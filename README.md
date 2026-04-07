@@ -53,6 +53,7 @@ After successful registration:
 
 * Users can log in using their username and password
 * The system checks credentials that were stored when the user was **Registering**
+* The system uses a **while loop** for checking if the details match
 
 ---
 
