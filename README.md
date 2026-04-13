@@ -1,6 +1,6 @@
-# 📘 Registration & Login System (Java)
+#  Registration & Login System (Java)
 
-## 📌 Overview
+##  Overview
 
 This project is a simple **Java console-based Registration and Login System**. It allows users to create an account with validated details and then log in using their credentials.
 
@@ -8,9 +8,9 @@ The system focuses on **input validation**, **basic security rules**, and **user
 
 ---
 
-## ⚙️ Features
+##  Features
 
-### ✅ User Registration
+###  User Registration
 
 Users must enter:
 
@@ -24,14 +24,14 @@ The system checks every input before accepting registration.
 
 ---
 
-### 🔐 Validation Rules
+### Validation Rules
 
-#### 👤 Username
+####  Username
 
 * Must contain an underscore `_`
 * Must be **no more than 5 characters**
 
-#### 🔑 Password
+####  Password
 
 * Must be at least **8 characters long**
 * Must contain:
@@ -40,14 +40,14 @@ The system checks every input before accepting registration.
     * At least **one number**
     * At least **one special character**
 
-#### 📱 Cell Phone Number
+####  Cell Phone Number
 
 * Must start with **+27** (South African international code)
 * Must contain **up to 10 digits** after `+27`
 
 ---
 
-### 🔓 Login System
+###  Login System
 
 After successful registration:
 
@@ -57,7 +57,7 @@ After successful registration:
 
 ---
 
-### 💬 System Messages
+###  System Messages
 
 * Displays clear messages for:
 
@@ -74,7 +74,7 @@ Welcome John, Doe it is great to see you again.
 
 ---
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ### Login Class
 
@@ -99,7 +99,7 @@ Handles all core logic:
 
 ---
 
-## ▶️ How It Works
+##  How It Works
 
 1. User enters registration details
 2. System validates:
