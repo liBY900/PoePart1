@@ -106,7 +106,5 @@ public class RegistrationSystem {
                 System.out.println(login.returnLoginStatus(isSuccess, fName, lName));
             }
         }
-
-        scanner.close();
     }
 }
