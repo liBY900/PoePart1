@@ -6,20 +6,21 @@ public class RegistrationSystem {
         Scanner scanner = new Scanner(System.in);
         Login login = new Login();
 
+        // Getting user information
         System.out.println("--- Registration ---");
-        System.out.print("Enter First Name: ");
+        System.out.println("Enter First Name: ");
         String fName = scanner.nextLine();
 
-        System.out.print("Enter Last Name: ");
+        System.out.println("Enter Last Name: ");
         String lName = scanner.nextLine();
 
-        System.out.print("Enter Username (must have underscore _ and be no more than five characters): ");
+        System.out.println("Enter Username (must have underscore _ and be no more than five characters): ");
         String user = scanner.nextLine();
 
-        System.out.print("Enter Password (8+ characters, capital letter, number, special character): ");
+        System.out.println("Enter Password (8+ characters, capital letter, number, special character): ");
         String pass = scanner.nextLine();
 
-        System.out.print("Enter Cell Phone (+27...): ");
+        System.out.println("Enter Cell Phone (+27...): ");
         String cell = scanner.nextLine();
 
         String regStatus = login.registerUser(user, pass, cell);
@@ -30,19 +31,19 @@ public class RegistrationSystem {
 
             System.out.println("\n--- Login ---");
 
-            boolean isSuccess = false;
+            boolean Success = false;
 
             // Login
-            while (!isSuccess) {
+            while (!Success) {
                 System.out.print("Enter Username: ");
                 String loginUser = scanner.nextLine();
 
                 System.out.print("Enter Password: ");
                 String loginPass = scanner.nextLine();
 
-                isSuccess = login.loginUser(loginUser, loginPass);
+                Success = login.loginUser(loginUser, loginPass);
 
-                System.out.println(login.returnLoginStatus(isSuccess, fName, lName));
+                System.out.println(login.returnLoginStatus(Success, fName, lName));
             }
         }
     }
