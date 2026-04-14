@@ -117,4 +117,7 @@ Handles all core logic:
     * Success or failure message is displayed
 
 ---
+## References 
+
+Regex researched from : https://www.w3schools.com/tools/tool_regex.php#gsc.tab=0
 
